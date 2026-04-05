@@ -1,0 +1,6 @@
+@my_app_example_ci_HostAddress = http://localhost:5298
+
+GET {{my_app_example_ci_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
