@@ -23,6 +23,9 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
+      - name: Restore with dotnet
+        run: dotnet restore my-app-example-ci/my-app-example-ci.csproj
+        
       - name: Build with dotnet
         run: dotnet build my-app-example-ci/my-app-example-ci.csproj --no-restore
 
