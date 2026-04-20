@@ -27,7 +27,7 @@ jobs:
         run: dotnet restore my-app-example-ci/my-app-example-ci.csproj
 
       - name: Build with dotnet
-        run: dotnet build my-app-example-ci/my-app-example-ci.csproj
+        run: dotnet build my-app-example-ci/my-app-example-ci.csproj --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
