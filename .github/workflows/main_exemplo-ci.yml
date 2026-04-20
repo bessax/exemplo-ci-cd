@@ -23,8 +23,11 @@ jobs:
         with:
           dotnet-version: '10.x'
 
+      - name: 📦 Restore (API)
+        run: dotnet restore my-app-example-ci/my-app-example-ci.csproj
+
       - name: Build with dotnet
-        run: dotnet build my-app-example-ci/my-app-example-ci.csproj --no-restore --configuration Release
+        run: dotnet build my-app-example-ci/my-app-example-ci.csproj
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
