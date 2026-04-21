@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: read #This is required for actions/checkout
 
@@ -23,14 +23,11 @@ jobs:
         with:
           dotnet-version: '10.x'
 
-      - name: 📦 Restore (API)
-        run: dotnet restore my-app-example-ci/my-app-example-ci.csproj
-
       - name: Build with dotnet
-        run: dotnet build my-app-example-ci/my-app-example-ci.csproj --configuration Release
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish my-app-example-ci/my-app-example-ci.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -39,7 +36,7 @@ jobs:
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     permissions:
       id-token: write #This is required for requesting the JWT
@@ -54,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9E8D0677BF054388B1F8665F10674B1B }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FAFBDAD648414C8ABB857F32EDB7C9E7 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7AAD7B90A55F4A3DB88B57CBE80AB0B3 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_3383E94DC0D44A598EF0433A5FCFBB7B }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7F0A45EA7EFF4AFCBA4F8E79CE623BA0 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F8DAA6588C5B4909BE959DA700357332 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
