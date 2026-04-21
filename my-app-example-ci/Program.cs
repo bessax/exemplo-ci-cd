@@ -2,7 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 // Endpoint raiz
-app.MapGet("/", () => "Olá boa noite Dr., DevOps com .NET!");
+app.MapGet("/", () => $"Olá boa são {DateTime.UtcNow}, DevOps com .NET!");
 
 // Endpoint de status
 app.MapGet("/status", () => new 

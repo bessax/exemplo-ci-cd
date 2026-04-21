@@ -29,6 +29,9 @@ jobs:
       - name: Build with dotnet
         run: dotnet build my-app-example-ci/my-app-example-ci.csproj --no-restore
 
+      - name: 🧪 Testes
+        run: dotnet test my-app-exemplo-ci-tests/my-app-exemplo-ci-tests.csproj --configuration Release
+
       - name: dotnet publish
         run: dotnet publish my-app-example-ci/my-app-example-ci.csproj -c Release -o ./myapp
 
