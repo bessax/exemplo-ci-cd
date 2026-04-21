@@ -30,13 +30,13 @@ jobs:
         run: dotnet build my-app-example-ci/my-app-example-ci.csproj --no-restore
 
       - name: dotnet publish
-        run: dotnet publish my-app-example-ci/my-app-example-ci.csproj -c Release -o c:/myapp
+        run: dotnet publish my-app-example-ci/my-app-example-ci.csproj -c Release -o ./myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: c:/myapp
+          path: ./myapp
 
   deploy:
     runs-on: windows-latest
